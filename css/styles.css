@@ -10,6 +10,7 @@
 
 
 /* ---- Base Rules ---- */
+/* make the scrolling smooth so buttons dont cause jumps*/
 html {
     scroll-behavior: smooth;
 }
