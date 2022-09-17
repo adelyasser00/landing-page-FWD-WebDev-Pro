@@ -22,6 +22,8 @@
  * Define Global Variables
  * 
 */
+const navBarList = document.getElementById("navbar__list");
+const sections = Array.from(document.querySelectorAll("section"));
 
 
 /**
@@ -29,7 +31,19 @@
  * Start Helper Functions
  * 
 */
+//Dynamic Navigation Menu
+function generateNav(){
+    //li = document.createElement("li");
+    for (let section of sections){
+        let li = document.createElement("li");
+        li.innerHTML = `<li><a class="menu__link"  href="#${section.id}">${section.dataset.nav}</a></li>` 
+        navBarList.appendChild(li);
+    }
+    //navBarList.appendChild(li);
 
+}
+generateNav();
+//function to style active class
 
 
 /**
@@ -39,10 +53,8 @@
 */
 
 // build the nav
-
-
+generateNav;
 // Add class 'active' to section when near top of viewport
-
 
 // Scroll to anchor ID using scrollTO event
 
