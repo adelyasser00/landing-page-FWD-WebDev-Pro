@@ -22,10 +22,8 @@
  * Define Global Variables
  * 
 */
-const navBarList = document.getElementById("navbar__list");
+// store pointers to all sections in the html file in an array
 const sections = Array.from(document.querySelectorAll("section"));
-
-
 /**
  * End Global Variables
  * Start Helper Functions
@@ -33,38 +31,25 @@ const sections = Array.from(document.querySelectorAll("section"));
 */
 //Dynamic Navigation Menu
 function generateNav(){
+    const navBarList = document.getElementById("navbar__list");
     //loop over every section dynamically
     for (let section of sections){
-        let li = document.createElement("li");
-        //add the HTML code from javascript according to format required.
-        li.innerHTML = `<li><a class="menu__link"  href="#${section.id}">${section.dataset.nav}</a></li>` 
-        //add the <li> elements to the navbar__list Id element
-        navBarList.appendChild(li);
+        // for every section in the html file, insert the html code in the format:
+        //<li><a class="menu__link"  href="#sectionNum">Section Num</a></li>
+        navBarList.insertAdjacentHTML("beforeend",`<li><a class="menu__link"  href="#${section.id}">${section.dataset.nav}</a></li>`);
     }
 
 
-}
-
-//function to style active class
-function viewportCheck(section){
-    //check if section given in parameter is in viewport
-    coordinate=section.getBoundingClientRect();
-    if(coordinate.top >=0 ){
-        return true;
-    }
-    else{
-        return false;
-    }
 }
 
 function activeSection(){
-    //check every section to find the one in viewport
+    //check every section to find the one in viewport with every scroll event
     for(let section of sections){
-        if(viewportCheck(section)){
+        //get coordinate and check it
+        boundCheck=section.getBoundingClientRect()
+        if(boundCheck.top>=0){
             //declare the section active
-            if(!section.classList.contains("your-active-class")){
-                section.classList.add("your-active-class");
-            }
+            section.classList.add("your-active-class");    
         }
         //remove active section class if left viewport
         else{
