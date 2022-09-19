@@ -10,10 +10,7 @@
 
 
 /* ---- Base Rules ---- */
-/* make the scrolling smooth so buttons dont cause jumps*/
-html {
-    scroll-behavior: smooth;
-}
+
 body {
     background: rgb(136,203,171);
     background: linear-gradient(0deg, rgba(136,203,171,1) 0%, rgba(0,13,60,1) 100%);
@@ -48,7 +45,24 @@ p {
     line-height: 1.6em;
     color: #eee;
 }
+/*Responsive code*/
+@media (orientation: portrait) {
+    h1 {
+        /*font-size:1.5em;*/
+        margin: 4em 1rem;
+    } 
 
+    h2 {
+        font-size: 2em;
+    }
+    
+    p {
+        font-size: 0.75em;
+    }
+    .navbar__menu li {
+        height:10vh;
+    }
+}   
 /* ---- Layout Rules ---- */
 main {
     margin: 10vh 1em 10vh;
@@ -84,6 +98,15 @@ section {
     font-weight: bold;
     text-decoration: none;
     color: #000;
+}
+
+.navbar__menu .active__link {
+    display: block;
+    padding: 1em;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+    background-color: #000;
 }
 
 .navbar__menu .menu__link:hover {
@@ -225,3 +248,62 @@ section.your-active-class .landing__container::after {
 		           rotate(-360deg);
 	}
 }
+
+/*Responsive Code*/
+@media (orientation: portrait) and (max-width:375px)  {
+    h1 {
+        margin: 4em 1rem;
+    } 
+
+    h2 {
+        font-size: 2em;
+    }
+    
+    p {
+        font-size: 0.75em;
+    }
+    .navbar__menu ul {
+        height:5vh;
+    }
+    .navbar__menu li {
+        font-size: 10px;
+    }
+}   
+@media (orientation: portrait) and (min-width:375px)  {
+    h1 {
+        margin: 2em 1rem;
+    } 
+
+    h2 {
+        font-size: 1.3em;
+    }
+    
+    p {
+        font-size: 0.9em;
+    }
+    .navbar__menu ul {
+        height:5vh;
+    }
+    .navbar__menu li {
+        font-size: 10px;
+    }
+} 
+@media (orientation: landscape) and (max-width:750px)  {
+    h1 {
+        margin: 2em 1rem;
+    } 
+
+    h2 {
+        font-size: 1.3em;
+    }
+    
+    p {
+        font-size: 0.9em;
+    }
+    .navbar__menu ul {
+        height:5vh;
+    }
+    .navbar__menu li {
+        font-size: 10px;
+    }
+} 
