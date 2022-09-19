@@ -47,12 +47,13 @@ function activeSection(){
     for(let section of sections){
         //get coordinate and check it
         boundCheck=section.getBoundingClientRect()
-        if(boundCheck.top>=0){
+        //check the top and bottom of viewport with additional margins for smooth transition between sections
+        if(boundCheck.top<=160&& boundCheck.top>=-430){
             //declare the section active
             section.classList.add("your-active-class");    
         }
         //remove active section class if left viewport
-        else{
+        else if (section.classList.contains("your-active-class")){
             section.classList.remove("your-active-class");
         }
     }
