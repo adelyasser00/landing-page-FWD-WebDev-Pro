@@ -23,7 +23,7 @@
  * 
  */
 // store pointers to all sections in the html file in an array
-const sections = Array.from(document.querySelectorAll("section"));
+const SECTIONS = Array.from(document.querySelectorAll('section'));
 /**
  * End Global Variables
  * Start Helper Functions
@@ -31,41 +31,36 @@ const sections = Array.from(document.querySelectorAll("section"));
  */
 //Dynamic Navigation Menu
 function generateNav() {
-    const navBarList = document.getElementById("navbar__list");
+    const NAV_BAR_LIST = document.getElementById('navbar__list');
     //loop over every section dynamically
-    for (let section of sections) {
+    for (let section of SECTIONS) {
         // for every section in the html file, insert the html code in the format:
-        //<li><a class="menu__link"  href="#sectionNum">Section Num</a></li>
-        navBarList.insertAdjacentHTML("beforeend", `<li><a class="menu__link" id = Link${section.id}  href="#${section.id}">${section.dataset.nav}</a></li>`);
+        //<li><a class='menu__link'  href='#sectionNum'>Section Num</a></li>
+        NAV_BAR_LIST.insertAdjacentHTML('beforeend', `<li><a class='menu__link' id = Link${section.id}  href='#${section.id}'>${section.dataset.nav}</a></li>`);
     }
-
-
 }
 
 function activeSection() {
     //check every section to find the one in viewport with every scroll event
-    for (let section of sections) {
+    for (let section of SECTIONS) {
         //get coordinate and check it
-        boundCheck = section.getBoundingClientRect()
+        let boundCheck = section.getBoundingClientRect()
         //check the top and bottom of viewport with additional margins for smooth transition between sections
         if (boundCheck.top <= 160 && boundCheck.top >= -430) {
             //declare the section active
-            section.classList.add("your-active-class");
+            section.classList.add('your-active-class');
             //change the section link's colors in dynamic navigation bar aswell
             let activeLink = document.getElementById(`Link${section.id}`);
-            activeLink.classList.replace("menu__link", "active__link");
-        }
+            activeLink.classList.replace('menu__link', 'active__link');
+        } else if (section.classList.contains('your-active-class')) {
         //remove active section class if left viewport
-        else if (section.classList.contains("your-active-class")) {
-            section.classList.remove("your-active-class");
+            section.classList.remove('your-active-class');
             //remove the section link's colors in dynamic navigation bar aswell
             let activeLink = document.getElementById(`Link${section.id}`);
-            activeLink.classList.replace("active__link", "menu__link");
+            activeLink.classList.replace('active__link', 'menu__link');
         }
     }
 }
-
-
 
 
 /**
@@ -77,7 +72,7 @@ function activeSection() {
 // build the nav
 generateNav();
 // Add class 'active' to section when near top of viewport
-document.addEventListener("scroll", activeSection);
+document.addEventListener('scroll', activeSection);
 // Scroll to anchor ID using scrollTO event
 //add all anchor objects in an array and then add a listener for each array element.
 document.querySelectorAll('a[href^="#"]').forEach(link => {
@@ -86,9 +81,9 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
         event.preventDefault();
         //make every scroll smooth
         document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: "smooth",
-            block: "end",
-            inline: "nearest"
+            behavior: 'smooth',
+            block: 'end',
+            inline: 'nearest'
         });
     });
 });
@@ -100,11 +95,11 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 
 // Build menu 
 
-/* already done */
+/* already done with generateNav function */
 
 // Scroll to section on link click
 
-/* to scroll instead of jump. in styles.css file we add scroll-behavior: smooth; */
+/* already added with scrollintoview and addeventlistener */
 
 // Set sections as active
-/* already done */
+/* already done with addeventlistener and activeSection function */
